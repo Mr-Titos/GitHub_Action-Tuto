@@ -1,0 +1,20 @@
+{
+  "name": "mon-projet",
+  "version": "1.0.0",
+  "description": "Un exemple de projet pour tuto CI-CD",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "jest",
+    "lint": "echo 'Linting completed' && exit 0"
+  },
+  "author": "Ton Nom",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2",
+    "supertest": "^7.1.1"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}

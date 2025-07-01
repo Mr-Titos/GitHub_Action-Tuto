@@ -14,8 +14,8 @@ permissions:
   actions: read
 
 env:
-  REGISTRY: docker.io
-  IMAGE_NAME: ci-cd-demo
+  REGISTRY: ${{ secrets.DOCKER_USERNAME }}
+  IMAGE_NAME: ci-cd-demo  # Sera préfixé avec le nom d'utilisateur dans le job
   NODE_VERSION: '14'  # Aligné avec votre version locale
 
 jobs:
@@ -140,7 +140,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=ref,event=branch
             type=ref,event=pr
@@ -172,7 +172,7 @@ jobs:
       - name: Deploy to staging
         run: |
           echo "🚀 Deploying to staging environment..."
-          echo "Image: ${{ env.REGISTRY }}/${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest"
+          echo "Image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest"
           # Add your deployment commands here
           # kubectl apply -f k8s/
           # or helm upgrade --install myapp ./helm-chart
